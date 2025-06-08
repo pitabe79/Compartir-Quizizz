@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía para Compartir Quizizz - TecNM Virtual</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1F3463 0%, #8A1A3A 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: rgba(188, 149, 90, 0.1);
+            border-radius: 50%;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(188, 149, 90, 0.15);
+            border-radius: 50%;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #1F3463 0%, #8A1A3A 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 10;
+        }
+
+        .content {
+            padding: 50px 40px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: #1F3463;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(135deg, #BC955A 0%, #8A1A3A 100%);
+            border-radius: 2px;
+        }
+
+        .intro-text {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #BC955A;
+        }
+
+        .methods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .method-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .method-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(135deg, #1F3463 0%, #BC955A 100%);
+        }
+
+        .method-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            border-color: #BC955A;
+        }
+
+        .method-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #1F3463 0%, #8A1A3A 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .method-card h3 {
+            font-size: 1.5rem;
+            color: #1F3463;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .method-card p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .steps-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .steps-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #444;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .steps-list li:last-child {
+            border-bottom: none;
+        }
+
+        .steps-list li::before {
+            content: counter(step-counter);
+            counter-increment: step-counter;
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 20px;
+            height: 20px;
+            background: #BC955A;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .steps-list {
+            counter-reset: step-counter;
+        }
+
+        .advantages {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .advantages h4 {
+            color: #1F3463;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .advantages ul {
+            list-style: none;
+            margin: 0;
+        }
+
+        .advantages li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .advantages li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #BC955A;
+            font-weight: bold;
+        }
+
+        .sharing-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .option-card {
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .option-card:hover {
+            border-color: #BC955A;
+            transform: translateY(-3px);
+        }
+
+        .option-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .option-icon {
+            width: 50px;
+            height: 50px;
+            background: #BC955A;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .option-card h4 {
+            color: #1F3463;
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        .option-card p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .format-example {
+            background: #1F3463;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 10px 0;
+        }
+
+        .config-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+        }
+
+        .config-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .config-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+
+        .config-card h4 {
+            color: #1F3463;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .config-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .config-item:last-child {
+            border-bottom: none;
+        }
+
+        .config-value {
+            color: #BC955A;
+            font-weight: 500;
+        }
+
+        .best-practices {
+            background: linear-gradient(135deg, #1F3463 0%, #8A1A3A 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+        }
+
+        .best-practices h3 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        .practices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .practice-card {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .practice-card h4 {
+            color: #BC955A;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .example-instructions {
+            background: #f8f9fa;
+            border: 2px dashed #BC955A;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .example-instructions h4 {
+            color: #1F3463;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .instruction-text {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            font-style: italic;
+            color: #444;
+            border-left: 4px solid #BC955A;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #1F3463 0%, #8A1A3A 100%);
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #1F3463 0%, #8A1A3A 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .methods-grid,
+            .sharing-options,
+            .config-grid,
+            .practices-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo-section {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        .alert {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border: 1px solid #BC955A;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .alert::before {
+            content: '💡';
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+
+        .alert-content {
+            color: #856404;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo-icon">
+                    <div class="tecnm-logo">
+                        <div class="tecnm-gear"></div>
+                    </div>
+                </div>
+                <div>
+                    <h1>TecNM Virtual</h1>
+                    <p class="subtitle">Guía para Compartir Quizizz</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="intro-text">
+                <strong>Quizizz</strong> es una plataforma educativa que permite crear y compartir cuestionarios interactivos de manera sencilla y divertida. Esta guía te ayudará a dominar todas las opciones para compartir tus juegos con los estudiantes del TecNM.
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Métodos Principales para Compartir</h2>
+                <div class="methods-grid">
+                    <div class="method-card">
+                        <div class="method-icon">🎮</div>
+                        <h3>Juego en Vivo (Live Game)</h3>
+                        <p>Todos los estudiantes participan simultáneamente bajo tu supervisión directa, creando un ambiente dinámico y competitivo.</p>
+                        
+                        <ol class="steps-list">
+                            <li>Haz clic en "Jugar" en tu quiz</li>
+                            <li>Selecciona "Juego en Vivo"</li>
+                            <li>Configura opciones (tiempo, preguntas, etc.)</li>
+                            <li>Comparte el código de 6 dígitos</li>
+                            <li>Los estudiantes van a joinmyquiz.com</li>
+                        </ol>
+
+                        <div class="advantages">
+                            <h4>Ventajas:</h4>
+                            <ul>
+                                <li>Control total del ritmo</li>
+                                <li>Respuestas en tiempo real</li>
+                                <li>Ambiente competitivo</li>
+                                <li>Perfecto para repasos</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="method-card">
+                        <div class="method-icon">📝</div>
+                        <h3>Tarea Asignada (Homework)</h3>
+                        <p>Los estudiantes completan el quiz a su propio ritmo dentro de un plazo establecido, ideal para evaluaciones flexibles.</p>
+                        
+                        <ol class="steps-list">
+                            <li>Selecciona "Asignar Tarea"</li>
+                            <li>Establece fecha límite</li>
+                            <li>Configura intentos permitidos</li>
+                            <li>Comparte enlace o código</li>
+                            <li>Estudiantes acceden cuando quieran</li>
+                        </ol>
+
+                        <div class="advantages">
+                            <h4>Ventajas:</h4>
+                            <ul>
+                                <li>Flexibilidad de horarios</li>
+                                <li>Ritmo personalizado</li>
+                                <li>Acceso multiplataforma</li>
+                                <li>Evaluación formativa</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Opciones de Compartir</h2>
+                <div class="sharing-options">
+                    <div class="option-card">
+                        <div class="option-header">
+                            <div class="option-icon">🔢</div>
+                            <h4>Código de Juego</h4>
+                        </div>
+                        <p>Código numérico de 6 dígitos para acceso rápido</p>
+                        <div class="format-example">Ejemplo: 123456</div>
+                        <p><strong>Uso:</strong> Los estudiantes van a joinmyquiz.com</p>
+                        <p><strong>Ideal para:</strong> Juegos en vivo y acceso inmediato</p>
+                    </div>
+
+                    <div class="option-card">
+                        <div class="option-header">
+                            <div class="option-icon">🔗</div>
+                            <h4>Enlace Directo</h4>
+                        </div>
+                        <p>URL completa que lleva directamente al quiz</p>
+                        <div class="format-example">https://quizizz.com/join/quiz/...</div>
+                        <p><strong>Uso:</strong> Clic directo, sin códigos</p>
+                        <p><strong>Ideal para:</strong> Email, LMS, redes sociales</p>
+                    </div>
+
+                    <div class="option-card">
+                        <div class="option-header">
+                            <div class="option-icon">📱</div>
+                            <h4>Código QR</h4>
+                        </div>
+                        <p>Código de barras 2D para escanear con móvil</p>
+                        <div class="format-example">█▀▀█ █▀▀ █▀▀█</div>
+                        <p><strong>Uso:</strong> Escanear con cámara</p>
+                        <p><strong>Ideal para:</strong> Clases presenciales</p>
+                    </div>
+
+                    <div class="option-card">
+                        <div class="option-header">
+                            <div class="option-icon">🏫</div>
+                            <h4>Integración LMS</h4>
+                        </div>
+                        <p>Conexión directa con plataformas educativas</p>
+                        <div class="format-example">Google Classroom, Teams, Canvas</div>
+                        <p><strong>Uso:</strong> Asignación automática</p>
+                        <p><strong>Ideal para:</strong> Flujo de trabajo organizado</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="config-section">
+                <h3 style="color: #1F3463; text-align: center; margin-bottom: 30px; font-size: 2rem;">Configuraciones Importantes</h3>
+                <div class="config-grid">
+                    <div class="config-card">
+                        <h4>⚙️ Configuraciones de Juego</h4>
+                        <div class="config-item">
+                            <span>Tiempo por pregunta:</span>
+                            <span class="config-value">15 seg - 15 min</span>
+                        </div>
+                        <div class="config-item">
+                            <span>Orden de preguntas:</span>
+                            <span class="config-value">Aleatorio/Secuencial</span>
+                        </div>
+                        <div class="config-item">
+                            <span>Mostrar respuestas:</span>
+                            <span class="config-value">Inmediato/Al final</span>
+                        </div>
+                        <div class="config-item">
+                            <span>Permitir repetición:</span>
+                            <span class="config-value">Sí/No</span>
+                        </div>
+                        <div class="config-item">
+                            <span>Modo de dispositivo:</span>
+                            <span class="config-value">Individual/Equipos</span>
+                        </div>
+                    </div>
+
+                    <div class="config-card">
+                        <h4>🔒 Configuraciones de Privacidad</h4>
+                        <div class="config-item">
+                            <span>Público:</span>
+                            <span class="config-value">Cualquiera puede encontrar</span>
+                        </div>
+                        <div class="config-item">
+                            <span>Privado:</span>
+                            <span class="config-value">Solo con enlace/código</span>
+                        </div>
+                        <div class="config-item">
+                            <span>Solo institución:</span>
+                            <span class="config-value">Limitado al TecNM</span>
+                        </div>
+                        <div class="config-item">
+                            <span>Reporte de resultados:</span>
+                            <span class="config-value">Automático/Manual</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="best-practices">
+                <h3>🏆 Mejores Prácticas</h3>
+                <div class="practices-grid">
+                    <div class="practice-card">
+                        <h4>Para Juegos en Vivo</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>✓ Comparte código 5 min antes</li>
+                            <li>✓ Usa pantalla grande visible</li>
+                            <li>✓ Prepara preguntas de calentamiento</li>
+                            <li>✓ Establece reglas claras</li>
+                        </ul>
+                    </div>
+
+                    <div class="practice-card">
+                        <h4>Para Tareas Asignadas</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>✓ Envía recordatorios oportunos</li>
+                            <li>✓ Proporciona instrucciones escritas</li>
+                            <li>✓ Incluye soporte técnico</li>
+                            <li>✓ Define intentos permitidos</li>
+                        </ul>
+                    </div>
+
+                    <div class="practice-card">
+                        <h4>Maximizar Participación</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>✓ Anuncia con anticipación</li>
+                            <li>✓ Explica acceso paso a paso</li>
+                            <li>✓ Ofrece incentivos</li>
+                            <li>✓ Crea ambiente divertido</li>
+                        </ul>
+                    </div>
+
+                    <div class="practice-card">
+                        <h4>Seguimiento Efectivo</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>✓ Revisa reportes de participación</li>
+                            <li>✓ Identifica preguntas problemáticas</li>
+                            <li>✓ Proporciona retroalimentación</li>
+                            <li>✓ Mejora futuras actividades</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert">
+                <div class="alert-content">
+                    <strong>Consejo TecNM:</strong> Para maximizar el engagement, combina juegos en vivo para repasos dinámicos y tareas asignadas para evaluaciones reflexivas. ¡La variedad mantiene a los estudiantes motivados!
+                </div>
+            </div>
+
+            <div class="example-instructions">
+                <h4>📋 Ejemplo de Instrucciones para Estudiantes</h4>
+                <div class="instruction-text">
+                    <strong>Para participar en nuestro quiz de [TEMA]:</strong><br><br>
+                    
+                    <strong>Opción 1 - Código:</strong><br>
+                    1. Ve a joinmyquiz.com en tu dispositivo<br>
+                    2. Ingresa el código: <strong>[CÓDIGO]</strong><br>
+                    3. Escribe tu nombre completo<br>
+                    4. ¡Espera a que comience el juego!<br><br>
+                    
+                    <strong>Opción 2 - Enlace directo:</strong><br>
+                    Haz clic aquí: <strong>[ENLACE DIRECTO]</strong><br><br>
+                    
+                    <strong>Información importante:</strong><br>
+                    📅 Fecha límite: [FECHA]<br>
+                    🔄 Intentos permitidos: [NÚMERO]<br>
+                    ⏰ Tiempo estimado: [MINUTOS]<br>
+                    📧 ¿Problemas técnicos? Contacta: [EMAIL]
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">🔧 Resolución de Problemas</h2>
+                <div class="config-grid">
+                    <div class="config-card">
+                        <h4>❌ "No puedo acceder al juego"</h4>
+                        <ul style="list-style: none; padding: 0; color: #666;">
+                            <li>• Verificar código correcto</li>
+                            <li>• Comprobar conexión internet</li>
+                            <li>• Usar modo incógnito</li>
+                            <li>• Probar enlace directo</li>
+                        </ul>
+                    </div>
+
+                    <div class="config-card">
+                        <h4>⚠️ "El juego no carga"</h4>
+                        <ul style="list-style: none; padding: 0; color: #666;">
+                            <li>• Actualizar la página</li>
+                            <li>• Cambiar navegador</li>
+                            <li>• Habilitar JavaScript</li>
+                            <li>• Contactar soporte TecNM</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="footer-tecnm-logo">
+                        <div class="footer-gear"></div>
+                    </div>
+                </div>
+                <div>
+                    <p><strong>© 2025 Tecnológico Nacional de México</strong></p>
+                    <p>TecNM Virtual - Innovación Educativa</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animación suave al hacer scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.method-card, .option-card, .config-card, .practice-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+
+        // Efecto de hover mejorado para las tarjetas
+        document.querySelectorAll('.method-card, .option-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
